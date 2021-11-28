@@ -8,22 +8,15 @@ function getDiff() {
     var today = new Date();
     var target = new Date('12/15/2021'); // INPUT TARGET DATE HERE
 
-    var diffTime = target - today;
-    if(diffTime > 0) {
-        var diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
-        var reDays = diffTime - (diffDays*1000 * 60 * 60 * 24);
-        // console.log(reDays);
+    var timeleft = target - today;
+    if(timeleft > 0) {
+                    
+        var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var mins = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+        var sec = Math.floor((timeleft % (1000 * 60)) / 1000);
 
-        var diffHours = Math.floor(reDays / (1000 * 60 * 60)) - 1; // was over by an hour for some reason
-        var reHours = diffTime % (1000 * 60 * 60);
-        // console.log(reHours);
-
-        var diffMins = Math.floor(reHours / (1000 * 60));
-        var reMins = diffTime % (1000 * 60);
-
-        var diffSecs = Math.floor(reMins / 1000);
-
-        var timeRem = diffDays + " day(s) | " + diffHours + " hour(s) | " + diffMins + " minute(s) | " + diffSecs + " second(s)";
+        var timeRem = days + " day(s) | " + hours + " hour(s) | " + mins + " minute(s) | " + sec + " second(s)";
 
         var label = document.getElementById("remaining");
         label.innerHTML = timeRem;
